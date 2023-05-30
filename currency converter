@@ -1,0 +1,279 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class currencyconverter extends JFrame {
+    public static void main(String[] args) {
+        currencyconverter converter = new currencyconverter("Currency Converter");
+        converter.Components();
+        converter.setSize(400, 350);
+        converter.setVisible(true);
+        converter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    JLabel label,label1, label2, label3, label4;
+    JComboBox toggle1, toggle2;
+    JTextField text1, text2;
+    JButton convert,reset,exit;
+
+
+    public currencyconverter(String property) {
+
+        super(property);
+    }
+
+    public void Components() {
+        setSize(44, 60);
+        setLocationRelativeTo(null);
+        setLayout(null);
+        setResizable(false);
+
+        String array[] = {
+                "Select One..",
+                "Ethiopian",
+                "India",
+                "USA",
+                "Canada",
+                "Kenyan",
+        };
+        String array2[] =  {
+                "Select One..",
+                "Ethiopian",
+                "India",
+                "USA",
+                "Canada",
+                "Kenyan",
+        };
+
+        label = new JLabel("Currency Converting Tool");
+        label.setFont(new Font("Viner Hand ITC",Font.BOLD,20));
+        label.setForeground(Color.white);
+        label1 = new JLabel("From");
+        label2 = new JLabel("To");
+        label3 = new JLabel("Enter the Value:");
+        label4 = new JLabel("Changed value:");
+        toggle1 = new JComboBox(array);
+        toggle2 = new JComboBox(array2);
+        text1 = new JTextField();
+        text2 = new JTextField();
+        convert = new JButton("Convert");
+        reset = new JButton("Reset");
+        exit = new JButton("Exit");
+
+        setLayout(null);
+        getContentPane().setBackground(Color.GRAY.brighter());
+        label.setBounds(30, 45, 500, 20);
+        label1.setBounds(70, 85, 50, 20);
+        label2.setBounds(200, 85, 50, 20);
+        label3.setBounds(70, 130, 100, 20);
+        label4.setBounds(200, 130, 100, 20);
+
+        toggle1.setBounds(75, 105, 100, 20);
+        toggle2.setBounds(205, 105, 100, 20);
+
+        text1.setBounds(75, 155, 100, 20);
+        text2.setBounds(205, 155, 100, 20);
+
+        convert.setBounds(138, 200, 100, 20);
+        reset.setBounds(138, 225, 100, 20);
+        exit.setBounds(138, 250, 100, 20);
+
+        convert.addActionListener(new workingmethod());
+        reset.addActionListener(new Resetmethod());;
+        exit.addActionListener(new Exitmethod());;
+
+        add(label);
+        add(label1);
+        add(label2);
+        add(label3);
+        add(label4);
+
+        add(toggle1);
+        add(toggle2);
+
+        add(text1);
+        add(text2);
+
+        add(convert);
+        add(reset);
+        add(exit);
+
+        text2.setEditable(false);
+    }
+
+    class workingmethod implements ActionListener {
+        public void actionPerformed (ActionEvent action) {
+            String x, y;
+            x = (String) toggle1.getSelectedItem();
+            y = (String) toggle2.getSelectedItem();
+
+
+            if (action.getSource() == convert) {
+                //when we select same currency rate
+                if (x == "Ethiopian" && y == "Ethiopian") {
+                    text2.setText("" + text1.getText());
+                } else if (x == "India" && y == "India") {
+                    text2.setText("" + text1.getText());
+                } else if (x == "USA" && y == "USA") {
+                    text2.setText("" + text1.getText());
+                }else if (x ==  "Canada" && y ==  "Canada") {
+                    text2.setText("" + text1.getText());
+                }else if (x == "Kenyan" && y == "Kenyan") {
+                    text2.setText("" + text1.getText());
+                }
+
+
+
+                //from Ethiopian to others currency rate
+               else if (x == "Ethiopian" && y == "India") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 *1.521882);
+                    text2.setText("" + num2);
+                } else if (x == "Ethiopian" && y == "USA") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.0184315);
+                    text2.setText("" + num2);
+                }
+                else if (x == "Ethiopian" && y == "Canada") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.024795);
+                    text2.setText("" + num2);
+                }
+                else if (x == "Ethiopian" && y == "Kenyan") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 2.5288);
+                    text2.setText("" + num2);
+                }
+
+
+                //from india to others currency rate
+                else if (x == "India" && y =="Ethiopian" ) {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1*0.654875 );
+                    text2.setText("" + num2);
+                } else if (x == "India" && y == "USA") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.0121);
+                    text2.setText("" + num2);
+                }
+                else if (x == "India" && y == "Canada") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.016292);
+                    text2.setText("" + num2);
+                }
+                else if (x == "India" && y == "Kenyan") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 1.661641);
+                    text2.setText("" + num2);
+                }
+
+
+                //from USA to others currency rate
+                else if (x == "USA" && y ==  "Ethiopian") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 54.43249 );
+                    text2.setText("" + num2);
+                } else if (x == "USA" && y == "India") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1*82.879);
+                    text2.setText("" + num2);
+                }
+                else if (x == "USA" && y == "Canada") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 1.34988);
+                    text2.setText("" + num2);
+                }
+                else if (x =="USA" && y == "Kenyan") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 137.65);
+                    text2.setText("" + num2);
+                }
+
+                //from Canada to others currency rate
+                else if (x == "Canada" && y ==  "Ethiopian") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1*40.3308 );
+                    text2.setText("" + num2);
+                } else if (x == "Canada" && y == "India") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 61.3787);
+                    text2.setText("" + num2);
+                }
+                else if (x == "Canada" && y == "USA") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.7406);
+                    text2.setText("" + num2);
+                }
+                else if (x == "Canada" && y == "Kenyan") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 101.989);
+                    text2.setText("" + num2);
+                }
+
+
+                //from Kenyan to others currency rate
+                else if (x == "Kenyan" && y ==  "Ethiopian") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.3954 );
+                    text2.setText("" + num2);
+                } else if (x == "Kenyan" && y == "India") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.6014 );
+                    text2.setText("" + num2);
+                }
+                else if (x == "Kenyan" && y == "Canada") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 *0.009805 );
+                    text2.setText("" + num2);
+                }
+                else if (x == "Kenyan" && y == "USA") {
+                    String text = text1.getText();
+                    float num1 = Float.parseFloat(text);
+                    float num2 = (float) (num1 * 0.007265);
+                    text2.setText("" + num2);
+                }
+
+
+            }
+
+        }
+
+    }
+    class Exitmethod implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent action) {
+            System.exit(0);
+        }
+    }
+    class Resetmethod implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent action) {
+            toggle1.setSelectedIndex(0);
+            toggle2.setSelectedIndex(0);
+            text1.setText(null);
+            text2.setText(null);
+        }
+    }
+}
